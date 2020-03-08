@@ -1,26 +1,18 @@
 {
   "name": "invitefromqueue",
-  # This is a hardcoded variable that is environment dependant
-  "profile": "uneet-prod",
-  # END This is a hardcoded variable that is environment dependant
+  "profile": "ins-prod",
   "memory": 128,
   "timeout": 60,
-  # This is a hardcoded variable that is environment dependant
-  "role": "arn:aws:iam::192458993663:role/invitefromqueue_lambda_function",
-  # END This is a hardcoded variable that is environment dependant
+  "role": "arn:aws:iam::846324192534:role/invitefromqueue_lambda_function",
   "environment": {},
   "vpc": {
     "subnets": [
-      # This is a hardcoded variable that is environment dependant
-      "subnet-0df289b6d96447a84",
-      "subnet-0e41c71ad02ee7e99",
-      "subnet-01cb9ee064743ac56"
-      # END This is a hardcoded variable that is environment dependant
+      "subnet-05e8dd481c5e29276",
+      "subnet-07f4d7d2dea52fc88",
+      "subnet-04fd0459906319896"
     ],
     "securityGroups": [
-      # This is a hardcoded variable that is environment dependant
-      "sg-9f5b5ef8"
-      # END This is a hardcoded variable that is environment dependant
+      "sg-0b8eb9690edb2c88b"
     ]
   }
 }

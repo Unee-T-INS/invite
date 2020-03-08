@@ -1,6 +1,7 @@
 # We are using the `deploy.sh` script for the deployment, NOT the default make command from Tavis.
 #
 # When travis runs, It expects and calls the `make` command (and the Makefile) by default.
+# We are NOT using this Makefile but the file ./web/Makefile
 # We're adding the `test` step to avoid this scenario and make sure travis doesn't run `make`.
 
 test:
