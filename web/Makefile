@@ -33,7 +33,7 @@ endef
 # These variables are comming from AWS Parameter Store
 # - STAGE
 # - DOMAIN
-# - EMAIL_FOR_NOTIFICATION_GENERIC
+# - EMAIL_FOR_NOTIFICATION_INVITE
 # - PRIVATE_SUBNET_1
 # - PRIVATE_SUBNET_2
 # - PRIVATE_SUBNET_3
@@ -42,7 +42,7 @@ endef
 
 UPJSON = '.profile |= "$(TRAVIS_PROFILE_DEV)" \
 		  |.stages.production |= (.domain = "invite.$(call ssm,STAGE).$(call ssm,DOMAIN)" | .zone = "$(call ssm,STAGE).$(call ssm,DOMAIN)") \
-		  | .actions[0].emails |= ["invite+$(call ssm,EMAIL_FOR_NOTIFICATION_GENERIC)"] \
+		  | .actions[0].emails |= ["$(call ssm,EMAIL_FOR_NOTIFICATION_INVITE)"] \
 		  | .lambda.vpc.subnets |= [ "$(call ssm,PRIVATE_SUBNET_1)", "$(call ssm,PRIVATE_SUBNET_2)", "$(call ssm,PRIVATE_SUBNET_3)" ] \
 		  | .lambda.vpc.security_groups |= [ "$(call ssm,DEFAULT_SECURITY_GROUP)", "$(call ssm,LAMBDA_TO_RDS_SECURITY_GROUP)" ]'
 
@@ -50,7 +50,7 @@ UPJSON = '.profile |= "$(TRAVIS_PROFILE_DEV)" \
 
 PRODUPJSON = '.profile |= "$(TRAVIS_PROFILE_PROD)" \
 		  |.stages.production |= (.domain = "invite.$(call ssm-prod,DOMAIN)" | .zone = "$(call ssm-prod,DOMAIN)") \
-		  | .actions[0].emails |= ["invite+$(call ssm-prod,EMAIL_FOR_NOTIFICATION_GENERIC)"] \
+		  | .actions[0].emails |= ["$(call ssm-prod,EMAIL_FOR_NOTIFICATION_INVITE)"] \
 		  | .lambda.vpc.subnets |= [ "$(call ssm-prod,PRIVATE_SUBNET_1)", "$(call ssm-prod,PRIVATE_SUBNET_2)", "$(call ssm-prod,PRIVATE_SUBNET_3)" ] \
 		  | .lambda.vpc.security_groups |= [ "$(call ssm-prod,DEFAULT_SECURITY_GROUP)", "$(call ssm-prod,LAMBDA_TO_RDS_SECURITY_GROUP)" ]'
 
@@ -58,7 +58,7 @@ PRODUPJSON = '.profile |= "$(TRAVIS_PROFILE_PROD)" \
 
 DEMOUPJSON = '.profile |= "$(TRAVIS_PROFILE_DEMO)" \
 		  |.stages.production |= (.domain = "invite.$(call ssm-demo,STAGE).$(call ssm-demo,DOMAIN)" | .zone = "$(call ssm-demo,STAGE).$(call ssm-demo,DOMAIN)") \
-		  | .actions[0].emails |= ["invite+$(call ssm-demo,EMAIL_FOR_NOTIFICATION_GENERIC)"] \
+		  | .actions[0].emails |= ["$(call ssm-demo,EMAIL_FOR_NOTIFICATION_INVITE)"] \
 		  | .lambda.vpc.subnets |= [ "$(call ssm-demo,PRIVATE_SUBNET_1)", "$(call ssm-demo,PRIVATE_SUBNET_2)", "$(call ssm-demo,PRIVATE_SUBNET_3)" ] \
 		  | .lambda.vpc.security_groups |= [ "$(call ssm-demo,DEFAULT_SECURITY_GROUP)", "$(call ssm-demo,LAMBDA_TO_RDS_SECURITY_GROUP)" ]'
 
